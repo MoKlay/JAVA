@@ -30,14 +30,15 @@ public class Option_C {
       // (влево, вверх, вниз)
       System.out.println("\nЦиклический сдвиг матрицы на k позиций вправо");
       System.err.println("Введите индекс позиции для сдвига: ");
+      k = scanner.nextInt();
       shiftMatrixRight(k);
-      printMatrix(matrix, "Матрица после сдвига вправо:");
+      printMatrix(matrix);
 
-      // // 3. Найти и вывести наибольшее число возрастающих\убывающих элементов
-      // // матрицы, идущих подряд
-      // System.out.println("\nНаибольшее число возрастающих/убывающих элементов
-      // подряд");
-      // findLongestSequence(matrix);
+      // 3. Найти и вывести наибольшее число возрастающих\убывающих элементов
+      // матрицы, идущих подряд
+      System.out.println("\nНаибольшее число возрастающих/убывающих элементов подряд");
+      findLongestSequence(matrix);
+      printMatrix(matrix);
 
       // // 4. Найти сумму элементов матрицы, расположенных между первым и вторым
       // // положительными элементами каждой строки
@@ -181,4 +182,49 @@ public class Option_C {
 
     matrix = shiftedMatrix; // Сохраняем новую матрицу
   }
+
+  public static void findLongestSequence(int[][] matrix) {
+    if (matrix == null || matrix.length == 0 || matrix[0].length == 0) {
+        System.out.println("Empty matrix.");
+        return;
+    }
+
+    int maxLen = 0;
+
+    // Check rows
+    for (int[] row : matrix) {
+        maxLen = Math.max(maxLen, findLongestSequenceInArray(row));
+    }
+
+    // Check columns
+    for (int col = 0; col < matrix[0].length; col++) {
+        int[] column = new int[matrix.length];
+        for (int row = 0; row < matrix.length; row++) {
+            column[row] = matrix[row][col];
+        }
+        maxLen = Math.max(maxLen, findLongestSequenceInArray(column));
+    }
+
+    System.out.println("Length of the longest increasing/decreasing subsequence: " + maxLen);
+}
+
+
+// Helper function to find the longest increasing/decreasing sequence in an array
+private static int findLongestSequenceInArray(int[] arr) {
+    if (arr.length == 0) return 0;
+
+    int maxLen = 1;
+    int currentLen = 1;
+
+    for (int i = 1; i < arr.length; i++) {
+        if (arr[i] > arr[i - 1] || arr[i] < arr[i - 1]) { //Check for increasing OR decreasing
+            currentLen++;
+        } else {
+            maxLen = Math.max(maxLen, currentLen);
+            currentLen = 1;
+        }
+    }
+    maxLen = Math.max(maxLen, currentLen); //Handle the last sequence
+    return maxLen;
+}
 }
