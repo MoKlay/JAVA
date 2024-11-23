@@ -1,12 +1,14 @@
 package Stage_2;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
 public class Option_C {
   private static int[][] matrix;
-  private static Random random;
+  private static Random random = new Random();
 
   public static void main(String[] args) {
     try (Scanner scanner = new Scanner(System.in)) {
@@ -36,55 +38,46 @@ public class Option_C {
 
       // 3. Найти и вывести наибольшее число возрастающих\убывающих элементов
       // матрицы, идущих подряд
-      System.out.println("\nНаибольшее число возрастающих/убывающих элементов подряд");
-      findLongestSequence(matrix);
-      printMatrix(matrix);
+      System.out.println("\nНаибольшее число возрастающих/убывающих элементов подряд: " + findLongestSequence());
 
-      // // 4. Найти сумму элементов матрицы, расположенных между первым и вторым
-      // // положительными элементами каждой строки
-      // System.out.println("\nСумма элементов между первым и вторым положительным
-      // элементом каждой строки");
-      // sumBetweenFirstAndSecondPositiveElements(matrix);
+      // 4. Найти сумму элементов матрицы, расположенных между первым и вторым
+      // положительными элементами каждой строки
+      System.out.println("\nСумма элементов между первым и вторым положительным элементом каждой строки");
+      sumBetweenFirstAndSecondPositiveElements();
 
-      // // 5. Вывести числа от 1 до k в виде матрицы N x N слева направо и сверху
-      // вниз
-      // System.out.println("\nМатрица чисел от 1 до k");
-      // printNumbersInMatrix(n, k);
+      // 5. Вывести числа от 1 до k в виде матрицы N x N слева направо и сверху вниз
+      System.out.println("\nМатрица чисел от 1 до k");
+      System.out.println("Введите k: ");
+      k = scanner.nextInt();
+      printNumbersInMatrix(n, k);
 
       // // 6. Округлить все элементы матрицы до целого числа
       // System.out.println("\nОкругление всех элементов матрицы до целых чисел");
-      // roundAllElements(matrix);
-      // printMatrix(matrix, "Матрица после округления:");
+      // roundAllElements();
 
-      // // 7. Повернуть матрицу на 90, 180 или 270 градусов против часовой стрелки
-      // System.out.println("\nПоворот матрицы на 90 градусов против часовой
-      // стрелки");
-      // rotateMatrix90Degrees(matrix);
-      // printMatrix(matrix, "Матрица после поворота на 90 градусов:");
+      // 7. Повернуть матрицу на 90 градусов против часовой стрелки
+      System.out.println("\nПоворот матрицы на 90 градусов против часовой стрелки");
+      rotateMatrix90Degrees();
 
-      // // 8. Вычислить определитель матрицы
-      // System.out.println("\nОпределитель матрицы");
-      // if (n == 2 || n == 3) {
-      // double determinant = calculateDeterminant(matrix);
-      // System.out.printf("Определитель матрицы равен %.2f\n", determinant);
-      // } else {
-      // System.out.println("Вычисление определителя возможно только для матриц 2x2
-      // или 3x3.");
-      // }
+      // 8. Вычислить определитель матрицы
+      System.out.println("\nОпределитель матрицы");
+      if (n == 2 || n == 3) {
+        double determinant = calculateDeterminant();
+        System.out.printf("Определитель матрицы равен %.2f\n", determinant);
+      } else {
+        System.out.println("Вычисление определителя возможно только для матриц 2x2 или 3x3.");
+      }
 
-      // // 9. Построить матрицу, вычитая из элементов каждой строки матрицы её
-      // среднее арифметическое
-      // System.out.println("\nМатрица с вычтенным средним арифметическим каждой
-      // строки");
-      // subtractMeanFromEachRow(matrix);
-      // printMatrix(matrix, "Матрица после вычитания среднего арифметического:");
+      // 9. Построить матрицу, вычитая из элементов каждой строки матрицы её среднее
+      // арифметическое
+      System.out.println("\nМатрица с вычтенным средним арифметическим каждой строки");
+      subtractMeanFromEachRow();
 
-      // // 10. Найти максимальный элемент(ы) в матрице и удалить из матрицы все
-      // строки и столбцы, его содержащие
-      // System.out.println("\nУдаление строк и столбцов с максимальными элементами");
-      // removeMaxElementRowsColumns(matrix);
-      // printMatrix(matrix, "Матрица после удаления строк и столбцов с максимальными
-      // элементами:");
+      // 10. Найти максимальный элемент(ы) в матрице и удалить из матрицы все строки и
+      // столбцы, его содержащие
+      System.out.println("\nУдаление строк и столбцов с максимальными элементами");
+      removeMaxElementRowsColumns(matrix);
+      printMatrix(matrix);
 
       // // 11. Уплотнить матрицу, удаляя из неё строки и столбцы, заполненные нулями
       // System.out.println("\nУплотнение матрицы путём удаления нулевых строк и
@@ -142,18 +135,19 @@ public class Option_C {
   }
 
   private static void createMatrix(int n) {
+
     matrix = new int[n][n];
     for (int i = 0; i < n; i++) {
       for (int j = 0; j < n; j++) {
-        matrix[i][j] = random.nextInt(2 * n + 1) - n;
+        matrix[i][j] = random.nextInt();
       }
     }
   }
 
-  private static void printMatrix(int[][] matrix) {
-    for (int[] matrix1 : matrix) {
+  private static void printMatrix(int[][] matrixlocal) {
+    for (int[] matrix1 : matrixlocal) {
       for (int j : matrix1) {
-        System.out.printf("%3d ", j);
+        System.out.print(j + " ");
       }
       System.out.println();
     }
@@ -165,7 +159,7 @@ public class Option_C {
       throw new IllegalArgumentException("Неверный индекс столбца");
     }
 
-    Arrays.sort(matrix, (a, b) -> Integer.compare(a[k], b[k]));
+    Arrays.sort(matrix, (a, b) -> Float.compare(a[k], b[k]));
   }
 
   private static void shiftMatrixRight(int k) {
@@ -183,48 +177,228 @@ public class Option_C {
     matrix = shiftedMatrix; // Сохраняем новую матрицу
   }
 
-  public static void findLongestSequence(int[][] matrix) {
+  public static int findLongestSequence() {
     if (matrix == null || matrix.length == 0 || matrix[0].length == 0) {
-        System.out.println("Empty matrix.");
-        return;
+      System.out.println("Пустая матрица.");
+      return 0;
     }
 
     int maxLen = 0;
 
-    // Check rows
     for (int[] row : matrix) {
-        maxLen = Math.max(maxLen, findLongestSequenceInArray(row));
+      maxLen = Math.max(maxLen, findLongestSequenceInArray(row));
     }
 
-    // Check columns
     for (int col = 0; col < matrix[0].length; col++) {
-        int[] column = new int[matrix.length];
-        for (int row = 0; row < matrix.length; row++) {
-            column[row] = matrix[row][col];
-        }
-        maxLen = Math.max(maxLen, findLongestSequenceInArray(column));
+      int[] column = new int[matrix.length];
+      for (int row = 0; row < matrix.length; row++) {
+        column[row] = matrix[row][col];
+      }
+      maxLen = Math.max(maxLen, findLongestSequenceInArray(column));
     }
 
-    System.out.println("Length of the longest increasing/decreasing subsequence: " + maxLen);
-}
+    return maxLen;
+  }
 
-
-// Helper function to find the longest increasing/decreasing sequence in an array
-private static int findLongestSequenceInArray(int[] arr) {
-    if (arr.length == 0) return 0;
+  private static int findLongestSequenceInArray(int[] arr) {
+    if (arr.length == 0)
+      return 0;
 
     int maxLen = 1;
     int currentLen = 1;
 
     for (int i = 1; i < arr.length; i++) {
-        if (arr[i] > arr[i - 1] || arr[i] < arr[i - 1]) { //Check for increasing OR decreasing
-            currentLen++;
-        } else {
-            maxLen = Math.max(maxLen, currentLen);
-            currentLen = 1;
-        }
+      if (arr[i] > arr[i - 1] || arr[i] < arr[i - 1]) {
+        currentLen++;
+      } else {
+        maxLen = Math.max(maxLen, currentLen);
+        currentLen = 1;
+      }
     }
-    maxLen = Math.max(maxLen, currentLen); //Handle the last sequence
+    maxLen = Math.max(maxLen, currentLen);
     return maxLen;
-}
+  }
+
+  private static void sumBetweenFirstAndSecondPositiveElements() {
+    if (matrix == null || matrix.length == 0) {
+      return;
+    }
+
+    for (int i = 0; i < matrix.length; i++) {
+      int firstPositiveIndex = -1;
+      int secondPositiveIndex = -1;
+      int sum = 0;
+
+      for (int j = 0; j < matrix[i].length; j++) {
+        if (matrix[i][j] > 0) {
+          if (firstPositiveIndex == -1) {
+            firstPositiveIndex = j;
+          } else {
+            secondPositiveIndex = j;
+            break;
+          }
+        }
+      }
+
+      if (firstPositiveIndex != -1 && secondPositiveIndex != -1) {
+        for (int k = firstPositiveIndex + 1; k < secondPositiveIndex; k++) {
+          sum += matrix[i][k];
+        }
+        System.out.println("Сумма строки " + (i + 1) + ": " + sum);
+      } else {
+        System.out.println("Строка " + (i + 1) + ": Не найдены положительные числа");
+      }
+    }
+  }
+
+  private static void printNumbersInMatrix(int n, int k) {
+    if (n <= 0 || k <= 0) {
+      return;
+    }
+
+    int[][] matrix = new int[n][n];
+    int count = 1;
+    int maxElements = n * n;
+
+    if (k < maxElements) {
+      maxElements = k;
+    }
+
+    for (int i = 0; i < n; i++) {
+      for (int j = 0; j < n; j++) {
+        if (count <= maxElements) {
+          matrix[i][j] = count;
+          count++;
+        } else {
+          matrix[i][j] = 0;
+        }
+      }
+    }
+
+    for (int i = 0; i < n; i++) {
+      for (int j = 0; j < n; j++) {
+        System.out.printf("%4d ", matrix[i][j]); // Format for better spacing
+      }
+      System.out.println();
+    }
+  }
+
+  private static void roundAllElements(float[][] matrix) {
+    for (int i = 0; i < matrix.length; i++) {
+      for (int j = 0; j < matrix.length; j++) {
+        matrix[i][j] = (int) matrix[i][j];
+      }
+      System.out.println();
+    }
+  }
+
+  public static void rotateMatrix90Degrees() {
+    if (matrix == null || matrix.length == 0 || matrix.length != matrix[0].length) {
+      return;
+    }
+
+    int n = matrix.length;
+
+    for (int i = 0; i < n; i++) {
+      for (int j = 0; j < n; j++) {
+        matrix[j][n - 1 - i] = matrix[i][j];
+      }
+    }
+
+    printMatrix(matrix);
+  }
+
+  public static double calculateDeterminant() {
+    int n = matrix.length;
+    if (n == 0)
+      return 0;
+
+    if (n == 1)
+      return matrix[0][0];
+    if (n == 2) {
+      return matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0];
+    } else if (n == 3) {
+      return matrix[0][0] * (matrix[1][1] * matrix[2][2] - matrix[1][2] * matrix[2][1]) -
+          matrix[0][1] * (matrix[1][0] * matrix[2][2] - matrix[1][2] * matrix[2][0]) +
+          matrix[0][2] * (matrix[1][0] * matrix[2][1] - matrix[1][1] * matrix[2][0]);
+    } else {
+      throw new IllegalArgumentException("Поддерживается матрицами 2 на 2 или 3 на 3");
+    }
+  }
+
+  public static void subtractMeanFromEachRow() {
+    if (matrix == null || matrix.length == 0) {
+      return;
+    }
+
+    int rows = matrix.length;
+    int cols = matrix[0].length;
+    double[][] resultMatrix = new double[rows][cols]; // Use double to handle potential fractions
+
+    for (int i = 0; i < rows; i++) {
+      double sum = 0;
+      for (int j = 0; j < cols; j++) {
+        sum += matrix[i][j];
+      }
+      double mean = sum / cols;
+
+      for (int j = 0; j < cols; j++) {
+        resultMatrix[i][j] = matrix[i][j] - mean;
+      }
+    }
+
+    for (int i = 0; i < resultMatrix.length; i++) {
+      for (int j = 0; j < resultMatrix.length; j++) {
+        System.out.print(resultMatrix[i][j] + " ");
+      }
+      System.out.println();
+    }
+  }
+
+  public static void removeMaxElementRowsColumns(int[][] matrix) {
+    if (matrix == null || matrix.length == 0 || matrix[0].length == 0) {
+      return;
+    }
+
+    int rows = matrix.length;
+    int cols = matrix[0].length;
+    int maxVal = Integer.MIN_VALUE;
+    List<Integer> maxRows = new ArrayList<>();
+    List<Integer> maxCols = new ArrayList<>();
+
+    for (int i = 0; i < rows; i++) {
+      for (int j = 0; j < cols; j++) {
+        if (matrix[i][j] > maxVal) {
+          maxVal = matrix[i][j];
+          maxRows.clear();
+          maxCols.clear();
+          maxRows.add(i);
+          maxCols.add(j);
+        } else if (matrix[i][j] == maxVal) {
+          maxRows.add(i);
+          maxCols.add(j);
+        }
+      }
+    }
+
+    int newRows = rows - maxRows.size();
+    int newCols = cols - maxCols.size();
+    int[][] newMatrix = new int[newRows][newCols];
+
+    int newRowIdx = 0;
+    for (int i = 0; i < rows; i++) {
+      if (!maxRows.contains(i)) {
+        int newColIdx = 0;
+        for (int j = 0; j < cols; j++) {
+          if (!maxCols.contains(j)) {
+            newMatrix[newRowIdx][newColIdx] = matrix[i][j];
+            newColIdx++;
+          }
+        }
+        newRowIdx++;
+      }
+    }
+
+    System.arraycopy(newMatrix, 0, matrix, 0, newMatrix.length);
+  }
 }
