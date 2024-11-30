@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public class Option_C {
   private static int[][] matrix;
-  private static Random random = new Random(); // Создание объекта класса Random
+  private static final Random random = new Random(); // Создание объекта класса Random
 
   public static void main(String[] args) {
     clearConsole();
