@@ -684,18 +684,19 @@ public class Option_C {
   }
 
   private static void createMatrix(int n) {
+
     matrix = new int[n][n];
     for (int i = 0; i < n; i++) {
       for (int j = 0; j < n; j++) {
-        matrix[i][j] = random.nextInt(2 * n + 1) - n;
+        matrix[i][j] = random.nextInt();
       }
     }
   }
 
-  private static void printMatrix(int[][] matrix) {
-    for (int[] matrix1 : matrix) {
+  private static void printMatrix(int[][] matrixlocal) {
+    for (int[] matrix1 : matrixlocal) {
       for (int j : matrix1) {
-        System.out.printf("%3d ", j);
+        System.out.print(j + " ");
       }
       System.out.println();
     }
