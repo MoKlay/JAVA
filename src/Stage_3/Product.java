@@ -38,4 +38,28 @@ public class Product {
         + price + ", retentionPeriod=" + retentionPeriod + ", quantity=" + quantity + "]";
   }
 
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public void setUPC(String uPC) {
+    UPC = uPC;
+  }
+
+  public void setManufacturer(String manufacturer) {
+    this.manufacturer = manufacturer;
+  }
+
+  public void setPrice(double price) {
+    this.price = price;
+  }
+
+  public void setRetentionPeriod(int retentionPeriod) {
+    this.retentionPeriod = retentionPeriod;
+  }
+
+  public void setQuantity(int quantity) {
+    this.quantity = quantity;
+  }
+
 }
