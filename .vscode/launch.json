@@ -1,0 +1,273 @@
+{
+  // Используйте IntelliSense, чтобы узнать о возможных атрибутах.
+  // Наведите указатель мыши, чтобы просмотреть описания существующих атрибутов.
+  // Для получения дополнительной информации посетите: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Current File",
+      "request": "launch",
+      "mainClass": "${file}"
+    },
+    {
+      "type": "java",
+      "name": "InputConsole",
+      "request": "launch",
+      "mainClass": "com.example.Inputs.InputConsole",
+      "projectName": "demo"
+    },
+    {
+      "type": "java",
+      "name": "A01",
+      "request": "launch",
+      "mainClass": "com.example.Stage_1.A01",
+      "projectName": "demo"
+    },
+    {
+      "type": "java",
+      "name": "A02",
+      "request": "launch",
+      "mainClass": "com.example.Stage_1.A02",
+      "projectName": "demo"
+    },
+    {
+      "type": "java",
+      "name": "A03",
+      "request": "launch",
+      "mainClass": "com.example.Stage_1.A03",
+      "projectName": "demo"
+    },
+    {
+      "type": "java",
+      "name": "A04",
+      "request": "launch",
+      "mainClass": "com.example.Stage_1.A04",
+      "projectName": "demo"
+    },
+    {
+      "type": "java",
+      "name": "A05",
+      "request": "launch",
+      "mainClass": "com.example.Stage_1.A05",
+      "projectName": "demo"
+    },
+    {
+      "type": "java",
+      "name": "A06",
+      "request": "launch",
+      "mainClass": "com.example.Stage_1.A06",
+      "projectName": "demo"
+    },
+    {
+      "type": "java",
+      "name": "B01",
+      "request": "launch",
+      "mainClass": "com.example.Stage_1.B01",
+      "projectName": "demo"
+    },
+    {
+      "type": "java",
+      "name": "B02",
+      "request": "launch",
+      "mainClass": "com.example.Stage_1.B02",
+      "projectName": "demo"
+    },
+    {
+      "type": "java",
+      "name": "B03",
+      "request": "launch",
+      "mainClass": "com.example.Stage_1.B03",
+      "projectName": "demo"
+    },
+    {
+      "type": "java",
+      "name": "B04",
+      "request": "launch",
+      "mainClass": "com.example.Stage_1.B04",
+      "projectName": "demo"
+    },
+    {
+      "type": "java",
+      "name": "B05",
+      "request": "launch",
+      "mainClass": "com.example.Stage_1.B05",
+      "projectName": "demo"
+    },
+    {
+      "type": "java",
+      "name": "B06",
+      "request": "launch",
+      "mainClass": "com.example.Stage_1.B06",
+      "projectName": "demo"
+    },
+    {
+      "type": "java",
+      "name": "B07",
+      "request": "launch",
+      "mainClass": "com.example.Stage_1.B07",
+      "projectName": "demo"
+    },
+    {
+      "type": "java",
+      "name": "B08",
+      "request": "launch",
+      "mainClass": "com.example.Stage_1.B08",
+      "projectName": "demo"
+    },
+    {
+      "type": "java",
+      "name": "B09",
+      "request": "launch",
+      "mainClass": "com.example.Stage_1.B09",
+      "projectName": "demo"
+    },
+    {
+      "type": "java",
+      "name": "B10",
+      "request": "launch",
+      "mainClass": "com.example.Stage_1.B10",
+      "projectName": "demo"
+    },
+    {
+      "type": "java",
+      "name": "B11",
+      "request": "launch",
+      "mainClass": "com.example.Stage_1.B11",
+      "projectName": "demo"
+    },
+    {
+      "type": "java",
+      "name": "Option_A",
+      "request": "launch",
+      "mainClass": "com.example.Stage_10.Option_A",
+      "projectName": "demo"
+    },
+    {
+      "type": "java",
+      "name": "Option_B",
+      "request": "launch",
+      "mainClass": "com.example.Stage_10.Option_B",
+      "projectName": "demo"
+    },
+    {
+      "type": "java",
+      "name": "Option_C",
+      "request": "launch",
+      "mainClass": "com.example.Stage_10.Option_C",
+      "projectName": "demo"
+    },
+    {
+      "type": "java",
+      "name": "Option_A(1)",
+      "request": "launch",
+      "mainClass": "com.example.Stage_11.Option_A",
+      "projectName": "demo"
+    },
+    {
+      "type": "java",
+      "name": "Option_B(1)",
+      "request": "launch",
+      "mainClass": "com.example.Stage_11.Option_B",
+      "projectName": "demo"
+    },
+    {
+      "type": "java",
+      "name": "Auction",
+      "request": "launch",
+      "mainClass": "com.example.Stage_12.Auction",
+      "projectName": "demo"
+    },
+    {
+      "type": "java",
+      "name": "WatchStore",
+      "request": "launch",
+      "mainClass": "com.example.Stage_13.WatchStore",
+      "projectName": "demo"
+    },
+    {
+      "type": "java",
+      "name": "Client",
+      "request": "launch",
+      "mainClass": "com.example.Stage_14.Client",
+      "projectName": "demo"
+    },
+    {
+      "type": "java",
+      "name": "Server",
+      "request": "launch",
+      "mainClass": "com.example.Stage_14.Server",
+      "projectName": "demo"
+    },
+    {
+      "type": "java",
+      "name": "Option_A(2)",
+      "request": "launch",
+      "mainClass": "com.example.Stage_2.Option_A",
+      "projectName": "demo"
+    },
+    {
+      "type": "java",
+      "name": "Option_B(2)",
+      "request": "launch",
+      "mainClass": "com.example.Stage_2.Option_B",
+      "projectName": "demo"
+    },
+    {
+      "type": "java",
+      "name": "Option_C(1)",
+      "request": "launch",
+      "mainClass": "com.example.Stage_2.Option_C",
+      "projectName": "demo"
+    },
+    {
+      "type": "java",
+      "name": "Main",
+      "request": "launch",
+      "mainClass": "com.example.Stage_3.Main",
+      "projectName": "demo"
+    },
+    {
+      "type": "java",
+      "name": "Main(1)",
+      "request": "launch",
+      "mainClass": "com.example.Stage_4.Main",
+      "projectName": "demo"
+    },
+    {
+      "type": "java",
+      "name": "Main(2)",
+      "request": "launch",
+      "mainClass": "com.example.Stage_5.Main",
+      "projectName": "demo"
+    },
+    {
+      "type": "java",
+      "name": "Main(3)",
+      "request": "launch",
+      "mainClass": "com.example.Stage_6.Main",
+      "projectName": "demo"
+    },
+    {
+      "type": "java",
+      "name": "Main(4)",
+      "request": "launch",
+      "mainClass": "com.example.Stage_7.Main",
+      "projectName": "demo"
+    },
+    {
+      "type": "java",
+      "name": "Main(5)",
+      "request": "launch",
+      "mainClass": "com.example.Stage_8.Main",
+      "projectName": "demo"
+    },
+    {
+      "type": "java",
+      "name": "Main(6)",
+      "request": "launch",
+      "mainClass": "com.example.Stage_9.Main",
+      "projectName": "demo"
+    }
+  ]
+}
