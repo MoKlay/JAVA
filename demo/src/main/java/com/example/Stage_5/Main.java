@@ -1,9 +1,9 @@
 package com.example.Stage_5;
 
+import com.example.Stage_5.BlueRayDisc.CatalogEntry;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.Stage_5.BlueRayDisc.CatalogEntry;
 
 /*
  * Создать класс BlueRayDisc с внутренним классом, с помощью объектов 
@@ -43,7 +43,8 @@ class BlueRayDisc {
       this.subEntries = new ArrayList<>(); // Инициализируем список подэлементов
     }
 
-    public void addSubEntry(CatalogEntry entry) {
+    public void addSubEntry(String name, String type) {
+      CatalogEntry entry = new BlueRayDisc.CatalogEntry(name, type);
       if (type.equals("directory") || type.equals("subdirectory")) {
         subEntries.add(entry);
       } else {
@@ -123,16 +124,12 @@ public class Main {
     disc.addRootCatalogEntry(root);
 
     // Создаем подкаталоги
-    BlueRayDisc.CatalogEntry action = new BlueRayDisc.CatalogEntry("Action", BlueRayDisc.Types.SUBDIRECTORY);
-    BlueRayDisc.CatalogEntry comedy = new BlueRayDisc.CatalogEntry("Comedy", BlueRayDisc.Types.SUBDIRECTORY);
-    root.addSubEntry(action);
-    root.addSubEntry(comedy);
+    root.addSubEntry("Action", BlueRayDisc.Types.SUBDIRECTORY);
+    root.addSubEntry("Comedy", BlueRayDisc.Types.SUBDIRECTORY);
 
     // Добавляем записи (файлы)
-    BlueRayDisc.CatalogEntry terminator = new BlueRayDisc.CatalogEntry("Terminator.mkv", BlueRayDisc.Types.FILE);
-    BlueRayDisc.CatalogEntry shrek = new BlueRayDisc.CatalogEntry("Shrek.mkv", BlueRayDisc.Types.FILE);
-    action.addSubEntry(terminator);
-    comedy.addSubEntry(shrek);
+    root.addSubEntry("Terminator.mkv", BlueRayDisc.Types.FILE);
+    root.addSubEntry("Shrek.mkv", BlueRayDisc.Types.FILE);
 
     System.err.println(disc);
   }
