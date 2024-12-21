@@ -19,8 +19,10 @@ class BlueRayDisc {
     this.rootCatalog = new ArrayList<>();
   }
 
-  public void addRootCatalogEntry(CatalogEntry entry) {
-    rootCatalog.add(entry);
+  public BlueRayDisc.CatalogEntry addRootCatalogEntry(String name) {
+    BlueRayDisc.CatalogEntry root = new BlueRayDisc.CatalogEntry(name, Types.DIRECTORY);
+    rootCatalog.add(root);
+    return root;
   }
 
   public List<CatalogEntry> getRootCatalog() {
@@ -43,14 +45,33 @@ class BlueRayDisc {
       this.subEntries = new ArrayList<>(); // Инициализируем список подэлементов
     }
 
-    public void addSubEntry(String name, String type) {
-      CatalogEntry entry = new BlueRayDisc.CatalogEntry(name, type);
+    public void addDir(String name) {
+      CatalogEntry entry = new BlueRayDisc.CatalogEntry(name, Types.DIRECTORY);
       if (type.equals("directory") || type.equals("subdirectory")) {
         subEntries.add(entry);
       } else {
         throw new IllegalStateException("Cannot add subentries to a file.");
       }
     }
+
+    public void addSubDir(String name) {
+      CatalogEntry entry = new BlueRayDisc.CatalogEntry(name, Types.SUBDIRECTORY);
+      if (type.equals("directory") || type.equals("subdirectory")) {
+        subEntries.add(entry);
+      } else {
+        throw new IllegalStateException("Cannot add subentries to a file.");
+      }
+    }
+
+    public void addSubFile(String name) {
+      CatalogEntry entry = new BlueRayDisc.CatalogEntry(name, Types.FILE);
+      if (type.equals("directory") || type.equals("subdirectory")) {
+        subEntries.add(entry);
+      } else {
+        throw new IllegalStateException("Cannot add subentries to a file.");
+      }
+    }
+
 
     public List<CatalogEntry> getSubEntries() {
       return subEntries;
@@ -120,16 +141,15 @@ public class Main {
     BlueRayDisc disc = new BlueRayDisc("My Movie Collection");
 
     // Создаем корневой каталог
-    BlueRayDisc.CatalogEntry root = new BlueRayDisc.CatalogEntry("Movies", BlueRayDisc.Types.DIRECTORY);
-    disc.addRootCatalogEntry(root);
-
+    BlueRayDisc.CatalogEntry root = disc.addRootCatalogEntry("Movies");
+  
     // Создаем подкаталоги
-    root.addSubEntry("Action", BlueRayDisc.Types.SUBDIRECTORY);
-    root.addSubEntry("Comedy", BlueRayDisc.Types.SUBDIRECTORY);
+    root.addSubDir("Action");
+    root.addSubDir("Comedy");
 
     // Добавляем записи (файлы)
-    root.addSubEntry("Terminator.mkv", BlueRayDisc.Types.FILE);
-    root.addSubEntry("Shrek.mkv", BlueRayDisc.Types.FILE);
+    root.addSubFile("Terminator.mkv");
+    root.addSubFile("Shrek.mkv");
 
     System.err.println(disc);
   }

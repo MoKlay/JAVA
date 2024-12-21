@@ -1,7 +1,8 @@
 package com.example.Stage_4;
 
 import com.example.Stage_4.Arline.*;
-import com.example.Stage_4.Circle.Point;
+import com.example.Stage_4.Circle.*;
+
 import java.util.Scanner;
 
 
