@@ -1,10 +1,9 @@
 package com.example.Stage_4;
 
+import com.example.Stage_4.Arline.*;
+import com.example.Stage_4.Circle.Point;
 import java.util.Scanner;
 
-import com.example.Stage_4.Airline.CargoAirplane;
-import com.example.Stage_4.Airline.PassengerAirplane;
-import com.example.Stage_4.Circle.Point;
 
 /* Вариант А
  * Создать объект класса Круг, используя классы Точка, Окружность. Методы: 
@@ -76,7 +75,9 @@ public class Main {
     System.out.println("Общая грузоподъемность самолетов: " + airline.getTotalCarryingCapacity() + " кг");
 
     System.out.println("\nСамолеты, отсортированные по дальности полета:");
-    airline.sortPlanesByFlightRange().forEach(System.out::println);
+    airline.sortPlanesByFlightRange().forEach(e -> {
+      System.out.println(e);
+    });
 
     System.out.println("\nСамолеты с расходом топлива в диапазоне [2.0, 3.0] л/км:");
     airline.findPlanesByFuelConsumption(2.0, 3.0).forEach(System.out::println);

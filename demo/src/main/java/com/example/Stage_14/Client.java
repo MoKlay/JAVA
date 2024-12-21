@@ -8,8 +8,8 @@ import java.net.Socket;
 import java.util.Scanner;
 
 public class Client {
-    private static final String DEFAULT_SERVER_ADDRESS = "localhost";
-    private static final int DEFAULT_SERVER_PORT = 12345;
+    public static final String DEFAULT_SERVER_ADDRESS = "localhost";
+    public static final int DEFAULT_SERVER_PORT = 12345;
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -19,7 +19,6 @@ public class Client {
         String inputAddress = scanner.nextLine().trim();
         serverAddress = inputAddress.isEmpty() ? DEFAULT_SERVER_ADDRESS : inputAddress;
 
-        boolean serverCreated = false;
         Socket socket = null;
         try {
             socket = new Socket(serverAddress, DEFAULT_SERVER_PORT);
@@ -31,7 +30,6 @@ public class Client {
             try {
                 Thread.sleep(1000); // Подождем секунду, пока запуститься сервер
                 socket = new Socket(DEFAULT_SERVER_ADDRESS, DEFAULT_SERVER_PORT);
-                serverCreated = true;
                 System.out.println("Connected to server at " + DEFAULT_SERVER_ADDRESS + ":" + DEFAULT_SERVER_PORT + " (Server Created)");
             } catch (IOException | InterruptedException ex) {
                 System.out.println("Error connecting to server: " + ex.getMessage());
