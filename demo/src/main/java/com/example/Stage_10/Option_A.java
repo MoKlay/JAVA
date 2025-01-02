@@ -1,5 +1,6 @@
 package com.example.Stage_10;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -22,24 +23,13 @@ import com.example.Inputs.Resource;
  */
 
 public class Option_A {
-  static String inputFileName = null;
-  static String outputFileName = null;
-  static String subStringToRemove = null;
-
   public static void main(String[] args) {
-    // Обработка параметров командной строки
-    if (args.length == 3) {
-      inputFileName = args[0];
-      outputFileName = args[1];
-      subStringToRemove = args[2];
-    } else {
-      System.out.println("Использование: class <входной_файл> <выходной_файл> <подстрока>");
-      return;
-    }
-
     try {
-      List<String> processedLines = processStringsFromFile();
-      writeStringsToFile(processedLines);
+      List<String> processedLines = processStringsFromFile(Resource.getResourceFile(args[0]), args[1]);
+      if (!args[3].isEmpty()) {
+        Path path = Paths.get(args[3]);
+        Files.write(path, processedLines, StandardCharsets.UTF_8);
+      }
     } catch (IOException e) {
       System.err.println("Ошибка ввода-вывода: " + e.getMessage());
     } catch (Exception e) {
@@ -48,24 +38,14 @@ public class Option_A {
   }
 
   // Функция обработки строк из файла
-  static List<String> processStringsFromFile() throws IOException {
+  static List<String> processStringsFromFile(File file, String subStringToRemove) throws IOException {
     List<String> processedLines = new ArrayList<>();
-    try (Scanner scanner = new Scanner(Resource.getResourceFile(inputFileName))) {
+    try (Scanner scanner = new Scanner(file)) {
       while (scanner.hasNextLine()) {
-        processedLines.add(removeSubstring(scanner.nextLine()));
+        processedLines.add(
+          scanner.nextLine().replace(subStringToRemove, ""));
       }
     }
     return processedLines;
-  }
-
-  // Функция удаления подстроки из строки
-  static String removeSubstring(String line) {
-    return line.replace(subStringToRemove, "");
-  }
-
-  // Функция записи строк в файл
-  static void writeStringsToFile(List<String> lines) throws IOException {
-    Path path = Paths.get(outputFileName);
-    Files.write(path, lines, StandardCharsets.UTF_8);
   }
 }

@@ -1,5 +1,6 @@
 package com.example.Stage_9;
 
+import java.io.File;
 import java.io.IOException;
 import java.text.NumberFormat;
 import java.text.ParseException;
@@ -24,7 +25,7 @@ public class Main {
 
   public static void main(String[] args) {
     try {
-      double sum = processNumbersFromFile();
+      double sum = processNumbersFromFile(Resource.getResourceFile(resourcePath));
       System.out.println("Сумма чисел: " + sum);
     } catch (FileNotFoundException e) {
       System.err.println("Файл не найден: " + e.getMessage());
@@ -42,13 +43,13 @@ public class Main {
   }
 
   // Функция обработки чисел из файла
-  static double processNumbersFromFile()
+  public static double processNumbersFromFile(File file)
       throws IOException, InvalidNumberFormatException, NumberFormatException, OutOfMemoryError, FileNotFoundException {
 
     double sum = 0;
     int count = 0;
 
-    try (Scanner scanner = new Scanner(Resource.getResourceFile(resourcePath))) {
+    try (Scanner scanner = new Scanner(file)) {
       while (scanner.hasNextLine()) {
         String line = scanner.nextLine();
         String[] parts = line.split("\\s+"); // Разбиваем строку на части
@@ -99,7 +100,6 @@ public class Main {
 
   // Исключение для отсутствия файла
   static class FileNotFoundException extends Exception {
-    @SuppressWarnings("unused")
     FileNotFoundException(String message) {
       super(message);
     }
