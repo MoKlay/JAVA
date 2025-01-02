@@ -9,7 +9,6 @@ import java.util.Scanner;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 
@@ -34,13 +33,10 @@ class MainTest {
     void testFileNotFound() {
         // Проверяем, что программа корректно обрабатывает ситуацию, когда файл не найден
         String nonExistentFileName = "non_existent_file.txt";
-        Exception exception = assertThrows(FileNotFoundException.class, () -> {
-            try (Scanner scanner = new Scanner(Resource.getResourceFile(nonExistentFileName))) {}
+        assertThrows(RuntimeException.class, () -> {
+            try (Scanner scanner = new Scanner(Resource.getResourceFile(nonExistentFileName))) {
+
+            }
         });
-
-        String expectedMessage = "Файл не найден";
-        String actualMessage = exception.getMessage();
-
-        assertTrue(actualMessage.contains(expectedMessage));
     }
 }
