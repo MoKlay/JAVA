@@ -45,8 +45,6 @@ public class WatchStore {
         return;
 
       QueryExecutor queryExecutor = new QueryExecutor(dbConnection);
-      ModificationHandler modificationHandler = new ModificationHandler(dbConnection);
-
       // Примеры запросов
       System.out.println("Марки кварцевых часов: " + queryExecutor.getWatchBrandsByType("кварцевые"));
       System.out.println("Механические часы до 10000 руб: " + queryExecutor.getMechanicalWatches(10000));

@@ -1,22 +1,69 @@
 package com.example.Stage_6;
 
+abstract class abstractAirplane implements Airplane {
+  protected String model;
+  protected String registrationNumber;
+  protected String info;
+
+  public abstractAirplane(String model, String registrationNumber) {
+    this.model = model;
+    this.registrationNumber = registrationNumber;
+    this.info = "";
+  }
+
+  public abstract void undergoMaintenance();
+
+  public abstract void repair();
+
+  public abstract void performFlight(String destination);
+
+  public abstract void refuel();
+
+  public abstract void getAirplaneInfo();
+
+  public abstract void setAirplaneInfo(String info);
+
+  @Override
+  public String toString() {
+    return "Model: " + model + ", Registration Number: " + registrationNumber;
+  }
+
+  public String getModel() {
+    return model;
+  }
+
+  public void setModel(String model) {
+    this.model = model;
+  }
+
+  public String getRegistrationNumber() {
+    return registrationNumber;
+  }
+
+  public void setRegistrationNumber(String registrationNumber) {
+    this.registrationNumber = registrationNumber;
+  }
+
+  public String getInfo() {
+    return info;
+  }
+
+  public void setInfo(String info) {
+    this.info = info;
+  }
+}
+
 public class AirplaneDMO {
-  public static class CivilAirplane implements Airplane {
-    private String model;
-    private String registrationNumber;
+  public static class CivilAirplane extends abstractAirplane {
     private int flightHours;
     private boolean needsMaintenance;
-    private String info;
 
     public CivilAirplane(String model, String registrationNumber) {
-      this.model = model;
-      this.registrationNumber = registrationNumber;
+      super(model, registrationNumber);
       this.flightHours = 0;
       this.needsMaintenance = false;
-      this.info = "";
     }
 
-    
     @Override
     public void undergoMaintenance() {
       System.out.println(model + " (" + registrationNumber + ") прошел технический осмотр.");
@@ -58,65 +105,20 @@ public class AirplaneDMO {
       return needsMaintenance;
     }
 
-    
     @Override
     public String toString() {
-      return "Model: " + model + ", Registration Number: " + registrationNumber + ", Flight Hours: " + flightHours;
-    }
-
-
-    public String getModel() {
-      return model;
-    }
-
-
-    public void setModel(String model) {
-      this.model = model;
-    }
-
-
-    public String getRegistrationNumber() {
-      return registrationNumber;
-    }
-
-
-    public void setRegistrationNumber(String registrationNumber) {
-      this.registrationNumber = registrationNumber;
-    }
-
-
-    public void setFlightHours(int flightHours) {
-      this.flightHours = flightHours;
-    }
-
-
-    public void setNeedsMaintenance(boolean needsMaintenance) {
-      this.needsMaintenance = needsMaintenance;
-    }
-
-
-    public String getInfo() {
-      return info;
-    }
-
-
-    public void setInfo(String info) {
-      this.info = info;
+      return super.toString() + ", Flight Hours: " + flightHours;
     }
   }
 
-  public static class MilitaryAirplane implements Airplane {
-    private String model;
-    private String registrationNumber;
+  public static class MilitaryAirplane extends abstractAirplane {
     private String weaponSystem;
-    private String info;
 
     public MilitaryAirplane(String model, String registrationNumber, String weaponSystem) {
-      this.model = model;
-      this.registrationNumber = registrationNumber;
+      super(model, registrationNumber);
       this.weaponSystem = weaponSystem;
-      this.info = "";
     }
+
     @Override
     public void undergoMaintenance() {
       System.out.println(model + " (" + registrationNumber + ") прошел технический осмотр.");
@@ -151,38 +153,9 @@ public class AirplaneDMO {
       return weaponSystem;
     }
 
-    
     @Override
     public String toString() {
-      return "Model: " + model + ", Registration Number: " + registrationNumber + ", Weapon System: " + weaponSystem;
-    }
-
-    public String getModel() {
-      return model;
-    }
-
-    public void setModel(String model) {
-      this.model = model;
-    }
-
-    public String getRegistrationNumber() {
-      return registrationNumber;
-    }
-
-    public void setRegistrationNumber(String registrationNumber) {
-      this.registrationNumber = registrationNumber;
-    }
-
-    public void setWeaponSystem(String weaponSystem) {
-      this.weaponSystem = weaponSystem;
-    }
-
-    public String getInfo() {
-      return info;
-    }
-
-    public void setInfo(String info) {
-      this.info = info;
+      return super.toString() + ", Weapon System: " + weaponSystem;
     }
   }
 }

@@ -216,6 +216,7 @@ public class Option_C {
     clearConsole();
   }
 
+  @SuppressWarnings("deprecation")
   private static void clearConsole() {
     try {
       if (System.getProperty("os.name").contains("Windows"))

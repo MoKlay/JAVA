@@ -17,8 +17,6 @@ class MainTest {
 
     SearchCharWithFile searchCharWithFile;
 
-    @BeforeAll
-
     @Test
     void testCharacterCount() throws FileNotFoundException, IOException {
         // Создаем временный файл для тестирования
@@ -36,8 +34,8 @@ class MainTest {
     void testFileNotFound() {
         // Проверяем, что программа корректно обрабатывает ситуацию, когда файл не найден
         String nonExistentFileName = "non_existent_file.txt";
-        Exception exception = assertAll(() -> {
-            Scanner scanner = new Scanner(Resource.getResourceFile(nonExistentFileName));
+        Exception exception = assertThrows(FileNotFoundException.class, () -> {
+            try (Scanner scanner = new Scanner(Resource.getResourceFile(nonExistentFileName))) {}
         });
 
         String expectedMessage = "Файл не найден";
