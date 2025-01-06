@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import com.example.Inputs.Resource;
 /*
@@ -18,47 +17,70 @@ import com.example.Inputs.Resource;
 
 public class Option_B {
   static String fileName = "num.txt";
+  static boolean isFirstSet = true;
+  private static List<Integer> c1 = new ArrayList<>();
+  private static List<Integer> c2 = new ArrayList<>();
+  private static BufferedReader reader = null;
 
   public static void main(String[] args) {
-    try (BufferedReader reader = Resource.getBufferedReader(fileName)) {
-      List<Integer> c1 = new ArrayList<>();
-      List<Integer> c2 = new ArrayList<>();
+    try {
+      if (reader == null) {
+        try (BufferedReader reader = Resource.getBufferedReader(fileName)) {
+          processInput(reader);
+        }
+      } else {
+        processInput(reader);
+      }
+      System.out.println(c1);
+      System.out.println(c2);
+      System.out.println(getMergedList());
 
-      reader.lines()
-          .map(Integer::parseInt) // Преобразуем строки в числа
-          .forEach(num -> {
-            if (num < 0) {
-              return; // Пропускаем отрицательные числа
-            }
-            if (c1.isEmpty()) {
-              c1.add(num);
-              return; // Если c1 пустой, добавляем сразу
-            }
 
-            // Попробуем добавить в c1, если можно
-            int last = c1.get(c1.size() - 1);
-            if (num >= last) {
-              c1.add(num);
-              return;
-            }
 
-            // Если не получилось, переключаемся на c2 и продолжаем добавлять в c1
-            c2.add(num);
-          });
-
-      // Объединяем, сортируем и выводим
-      List<Integer> mergedList = c1.stream()
-          .sorted()
-          .collect(Collectors.toList());
-      mergedList.addAll(c2.stream()
-          .sorted()
-          .collect(Collectors.toList()));
-
-      System.out.println("Список C1: " + c1);
-      System.out.println("Список C2: " + c2);
-      System.out.println("Объединенный отсортированный список: " + mergedList);
-    } catch (IOException | NumberFormatException e) {
-      System.err.println("Ошибка: " + e.getMessage());
+    } catch (Exception e) {
+      e.printStackTrace();
     }
+
+
+  }
+
+  public static void processInput(BufferedReader reader) throws IOException {
+    reader.lines()
+        .map(Integer::parseInt)
+        .forEach(num -> {
+          if (num < 0) {
+            isFirstSet = false;
+            return;
+          }
+          if (isFirstSet) {
+            addToSortedList(c1, num);
+          } else {
+            addToSortedList(c2, num);
+          }
+        });
+  }
+
+  public static void setBufferedReader(BufferedReader read) {
+    reader = read;
+  }
+
+  public static List<Integer> getC1() {
+    return new ArrayList<>(c1);
+  }
+
+  public static List<Integer> getC2() {
+    return new ArrayList<>(c2);
+  }
+
+  public static List<Integer> getMergedList() {
+    List<Integer> mergedList = new ArrayList<>(c1);
+    mergedList.addAll(c2);
+    mergedList.sort(Integer::compareTo);
+    return mergedList;
+  }
+
+  public static void addToSortedList(List<Integer> list, int num) {
+    list.add(num);
+    list.sort(Integer::compareTo);
   }
 }
